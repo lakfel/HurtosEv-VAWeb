@@ -1,6 +1,26 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scrolling Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+	
+  </head>
+
+  <body id="page-top">
+		
+	<style>
 
 body {
   font: 10px sans-serif;
@@ -20,8 +40,115 @@ body {
 }
 
 </style>
-<body>
-<script src="https://d3js.org/d3.v3.min.js"></script>
+
+	
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Universidad de los Andes</br>Maestría en Ingeniería de Sistemas y Computación.</br>Visual Analytics</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Proyecto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Visualización</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Análisis</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-primary text-white">
+      <div class="container text-center">
+        <h1>Evolución de la cantidad de homicidios por día según la ocurrencía desde 1993 hasta 2016</h1>
+        <p class="lead">Visualización con datos temporales</p>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Proyecto</h2>
+            <p class="lead">El proyecto busca representar los datos obtenidos de la página <a href="www.datos.gov.co">www.datos.gov.co</a> relativos a la cantidad de homicidios en Santiago de Cali. Estos están representados por ocurrencia por día por año desde 1993 hasta 2016. 
+			</br>
+			A continuación se da una breve explicación del análisis que se realizó y las secciones What, Why y How que responden a la solución propuesta.
+			</p>
+			</br>
+			<h3>What</h3>
+			<p class="lead">
+			<strong> Dataset: </strong> Una tabla. Cada registro corresponde a la cantidad de homicidios en la ciudad de Santiago de Cali para el día especificad en cada año desde 1993 hasta 2016
+			</p>
+			<p class="lead">
+			<strong> Atributos: </strong> 
+			</p>
+			<p class="lead">
+            <ul>
+              <li><strong>Día: </strong> Categórico </li>
+              <li><strong>1993: </strong> Ordinal, Cuantitativo </li>
+              <li><strong>1994: </strong> Ordinal, Cuantitativo </li>
+              <li><strong>. </strong>  </li>
+			  <li><strong>. </strong>  </li>
+			  <li><strong>. </strong>  </li>
+			  <li><strong>2016: </strong> Ordinal, Cuantitativo </li>
+            </ul>
+			</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Modismo</h2>
+			<div id="visualDIV"></div>
+            <!--#include virtual="/visualizacion.html" -->
+				
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Análisis</h2>
+            <p class="lead">Podemos evidenciar que a lo largo de los años, para cada día la cantidad de muertes se mantuvo. Los días domingo, sábado y viernes fueron los que de manera acumulada preentaron más muertes en ese orden. Al mirar el total de muertes vemos que el dmonigo es quien más lejos llega en la escala.</br> Por otro lado, observamos que los días miercoles, martes y jueves son los que menos homicidios presentan en ese orden.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+	<script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="fisheye.js"></script>
 <script>
 
@@ -61,7 +188,7 @@ var area = d3.svg.area.radial()
     .innerRadius(function(d) { return radius(d.y0); })
     .outerRadius(function(d) { return radius(d.y0 + d.y); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#visualDIV").append("svg")
     .attr("width", width)
     .attr("height", height)
   .append("g")
@@ -113,4 +240,8 @@ function type(d) {
   return d;
 }
 
-</script>
+</script>	
+	
+  </body>
+
+</html>
