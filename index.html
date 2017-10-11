@@ -225,6 +225,7 @@ d3.csv("data3.csv", type, function(error, data) {
       .data(layers)
     .enter().append("path")
       .attr("class", "layer")
+	  .attr("id", function(d,i){return "path-" + i})
       .attr("d", function(d) { return area(d.values); })
       .style("fill", function(d, i) { return z(i); });
 
@@ -253,7 +254,20 @@ d3.csv("data3.csv", type, function(error, data) {
   legend.append("rect")
       .attr("width", 18)
       .attr("height", 18)
-      .attr("fill",function(d,i){return z(i);});
+      .attr("fill",function(d,i){return z(i);})
+	  .on("mouseover", function(d,i){
+			svg.selectAll(".layer")
+				.style("fill","#EEE");
+			svg.select("#path-"+i)
+				.style("fill",z(i));
+	  })
+	  .on("mouseout", function(d,i){
+			svg.selectAll(".layer")
+			.style("fill", function(d, i) { return z(i); });
+
+	  })
+	  ;
+	  
 
   legend.append("text")
       .attr("x", 24)
