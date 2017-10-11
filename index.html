@@ -239,10 +239,13 @@ d3.csv("data3.csv", type, function(error, data) {
   svg.selectAll(".max")
       .data(d3.range(angle.domain()[1]))
     .enter().append("g")
-      .attr("transform", function(d) { return "translate(" + 100*Math.cos(angle(d) * 180 / Math.PI) + "," + 100*Math.sin(angle(d) * 180 / Math.PI) + ")"; })
-	 .append("circle")
+      //.attr("transform", function(d,i) { return "translate(" + 100*Math.cos((360 * i /7  ) * 180 / Math.PI) + "," + 100*Math.sin((360 * i /7  ) * 180 / Math.PI) + ")"; })
+	 .append("rect")
+	  //.attr("transform", function(d,i) { return "translate(0,400)"; })
+      .attr("transform", function(d) { return "rotate(" + (180 + angle(d) * 180 / Math.PI) + ")"; })
       .attr("class", "max")
-	  .attr("r",0)
+	  .attr("height",100)
+	  .attr("width",0)
 	  .attr("id", function(d,i){return "max-" + i})
       .style("fill", "#F00");
 
@@ -273,14 +276,14 @@ d3.csv("data3.csv", type, function(error, data) {
 			svg.select("#path-"+i)
 				.style("fill",z(i));
 			
-			svg.select("#max-"+(datosPuntos[i].dia ))
-				.attr("r",2);
+			svg.select("#max-"+(datosPuntos[i].dia))
+				.attr("width",2);
 	  })
 	  .on("mouseout", function(d,i){
 			svg.selectAll(".layer")
 			.style("fill", function(d, i) { return z(i); });
 			svg.select("#max-"+(datosPuntos[i].dia ))
-				.attr("r",0);
+				.attr("width",0);
 		
 			
 	  })
